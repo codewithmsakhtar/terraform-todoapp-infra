@@ -6,7 +6,7 @@ permissions:
 
 jobs:
   terraform_initplanvalidate
-    name : terraform init plan validate
+    
 runs-on : sdell 
 jobs :
             - name: Azure Login
