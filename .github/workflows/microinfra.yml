@@ -2,6 +2,10 @@ name: terraform-microinfra
 
 on:
   workflow_dispatch:
+permissions:
+  contents: read
+  id-token: write
+  
 
 
 
@@ -9,9 +13,7 @@ jobs:
   terraform_initplanvalidate:
     name : terraform init plan
     runs-on: mydelllaptop
-      permissions:
-        contents: read
-        id-token: write
+      
 
     defaults:
       run:
