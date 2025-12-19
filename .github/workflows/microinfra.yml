@@ -1,42 +1,45 @@
-name : terraform todoinfra
-on : 
- workflow_dispatch :
+name: terraform-todoinfra
+
+on:
+  workflow_dispatch:
+
 permissions:
-  contents : read
-  id_token : write
+  contents: read
+  id-token: write
 
 jobs:
-  terraform_initplanvalidate :
-    
-runs-on : mydellleptop
+  terraform_initplanvalidate:
+    runs-on: mydellleptop
 
-defaults :
-  run :
-    working-directory : environments/dev
+    defaults:
+      run:
+        working-directory: environments/dev
 
-  steps:
-  - name: Checkout repository
-    uses: actions/checkout@v4
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-  
-    - name: Azure Login
-      uses: azure/login@v2
-      with:
-        client-id: ${{ secrets.AZURE_CLIENT_ID }}
-        tenant-id: ${{ secrets.AZURE_TENANT_ID }}
-        subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}  
+      - name: Azure Login
+        uses: azure/login@v2
+        with:
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
 
-    - name: Terraform Init
-      run: terraform init
+      - name: Verify Terraform Version
+        run: terraform -v
 
-    - name: Terraform Format
-      run: terraform fmt -check -recursive
+      - name: Terraform Init
+        run: terraform init
 
-   - name: Terraform Validate
-     run: terraform validate 
+      - name: Terraform Format
+        run: terraform fmt -check -recursive
 
-    - name: Terraform Plan
-      run: terraform plan
+      - name: Terraform Validate
+        run: terraform validate
+
+      - name: Terraform Plan
+        run: terraform plan
 
     
 
