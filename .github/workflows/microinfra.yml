@@ -9,7 +9,8 @@ permissions:
 
 jobs:
      terraform_initplanvalidate:
-     runs-on: mydellleptop
+       name : terraform init plan
+          runs-on: mydelllaptop
   
      defaults:
         run:
@@ -35,8 +36,8 @@ jobs:
         - name: Terraform Format
           run: terraform fmt -check -recursive
 
-      - name: Terraform Validate
-        run: terraform validate
+        - name: Terraform Validate
+          run: terraform validate
 
-      - name: Terraform Plan
-        run: terraform plan
+        - name: Terraform Plan
+          run: terraform plan
