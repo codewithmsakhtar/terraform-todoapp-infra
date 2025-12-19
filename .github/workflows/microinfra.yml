@@ -12,7 +12,7 @@ permissions:
 jobs:
   terraform_initplanvalidate:
     name : terraform init plan
-    runs-on: mydelllaptop
+    runs-on: myydelllaptop
       
 
     defaults:
